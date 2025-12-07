@@ -122,6 +122,7 @@ canvas {
   background-position: center;
   box-shadow: 0 0 15px var(--glam-gold);
   overflow: hidden;
+  position: relative;
 }
 
 .vinyl.easy {
@@ -140,6 +141,11 @@ canvas {
   transform: rotate(8deg);
   filter: brightness(1.2);
   box-shadow: 0 0 25px var(--glam-pink), 0 0 40px var(--glam-gold);
+}
+
+.vinyl.active {
+  box-shadow: 0 0 25px var(--glam-gold), 0 0 45px var(--glam-pink);
+  transform: scale(1.05);
 }
 
 button {
