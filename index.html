@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rhythm Game </title>
+  <title>Rhythm Game</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -12,13 +12,12 @@
 
   <header>
     <h1>Rhythm Game</h1>
-    <h2> This application will make you smile </h2>
-    <p> Tap or click in rhythm with the music </p>
+    <h2>This application will make you smile</h2>
+    <p>Tap or click in rhythm with the music</p>
     <hr />
   </header>
 
   <main>
-
     <section class="game-area">
       <div class="scoreboard">
         <p>Score: <span id="score">0</span></p>
@@ -34,20 +33,20 @@
       </div>
 
       <div class="controls">
-        <button>Start</button>
-        <button>Pause</button>
-        <button>Stop</button>
+        <button id="startBtn">Start</button>
+        <button id="pauseBtn">Pause</button>
+        <button id="stopBtn">Stop</button>
       </div>
 
       <div class="vinyl-buttons">
-        <div class="vinyl easy"></div>
-        <div class="vinyl medium"></div>
-        <div class="vinyl hard"></div>
+        <div class="vinyl easy" data-difficulty="easy" title="Easy • Song1"></div>
+        <div class="vinyl medium" data-difficulty="medium" title="Medium • Song2"></div>
+        <div class="vinyl hard" data-difficulty="hard" title="Hard • Song3"></div>
       </div>
-
     </section>
   </main>
 
+  <script src="script.js"></script>
 </body>
 
 </html>
