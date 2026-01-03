@@ -239,6 +239,23 @@ document.querySelectorAll(".tap-zones button").forEach((btn, index) => {
   btn.addEventListener("click", () => handleTap(index));
 });
 
+document.addEventListener("keydown", (e) => {
+  if (!isPlaying) return;
+
+  switch (e.key.toLowerCase()) {
+    case "a":
+      handleTap(0);
+      break;
+    case "s":
+      handleTap(1);
+      break;
+    case "d":
+      handleTap(2);
+      break;
+  }
+});
+
+
 // Controls
 const startBtn = document.getElementById("startBtn");
 const pauseBtn = document.getElementById("pauseBtn");
