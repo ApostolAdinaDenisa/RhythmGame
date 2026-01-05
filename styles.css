@@ -57,6 +57,18 @@ header p {
   color: #ddd;
 }
 
+.background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.25;
+  z-index: -2;
+}
+
+
 .game-area {
   background: rgba(20, 20, 20, 0.8);
   border: 2px solid var(--glam-pink);

@@ -1,9 +1,11 @@
-// ====== CANVAS & GAME STATE ======
+// CANVAS & GAME STATE
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
 const scoreDisplay = document.getElementById("score");
 const comboDisplay = document.getElementById("combo");
+
+const bgVideo = document.getElementById("bgVideo");
 
 // Game state
 let score = 0;
@@ -24,9 +26,8 @@ const lanes = [
 const hitY = 350;
 let noteSpeed = 250; // px / second (will be overridden by difficulty)
 
-// ====== AUDIO / DIFFICULTY CONFIGURATION ======
-
-// Map your songs & difficulty settings here
+// AUDIO/ DIFFICULTY CONFIGURATION
+// Mapped the songs and difficulty settings here
 const difficultyConfig = {
   easy: {
     label: "Easy",
@@ -100,7 +101,7 @@ class AudioManager {
 
 const audioManager = new AudioManager();
 
-// ====== DIFFICULTY SELECTION LOGIC ======
+// DIFFICULTY SELECTION LOGIC
 function setDifficulty(diffKey) {
   const config = difficultyConfig[diffKey];
   if (!config) return;
@@ -141,7 +142,7 @@ function resetGameVisualState() {
   drawLanes();
 }
 
-// ====== DRAWING & GAME MECHANICS ======
+// DRAWING & GAME MECHANICS
 function drawLanes() {
   ctx.lineWidth = 2;
 
@@ -211,7 +212,7 @@ function handleTap(laneIndex) {
   comboDisplay.textContent = combo;
 }
 
-// ====== MAIN GAME LOOP ======
+// MAIN GAME LOOP
 function gameLoop(timestamp) {
   if (!isPlaying) return;
 
@@ -233,7 +234,7 @@ function gameLoop(timestamp) {
   requestAnimationFrame(gameLoop);
 }
 
-// ====== INPUT BINDINGS ======
+// INPUT BINDINGS
 // Tap buttons
 document.querySelectorAll(".tap-zones button").forEach((btn, index) => {
   btn.addEventListener("click", () => handleTap(index));
@@ -255,7 +256,6 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-
 // Controls
 const startBtn = document.getElementById("startBtn");
 const pauseBtn = document.getElementById("pauseBtn");
@@ -265,8 +265,8 @@ startBtn.addEventListener("click", () => {
   if (!isPlaying) {
     isPlaying = true;
     lastTime = performance.now();
-    // Start music in sync with gameplay
-    audioManager.play();
+    audioManager.play(); // Start music in sync with gameplay
+    bgVideo.play(); // Video API
     requestAnimationFrame(gameLoop);
   }
 });
@@ -274,11 +274,14 @@ startBtn.addEventListener("click", () => {
 pauseBtn.addEventListener("click", () => {
   isPlaying = false;
   audioManager.pause();
+  bgVideo.pause(); // Video API
 });
 
 stopBtn.addEventListener("click", () => {
   isPlaying = false;
   audioManager.stop();
+  bgVideo.pause(); // Video API
+  bgVideo.currentTime = 0; // Video API
   resetGameVisualState();
 });
 
@@ -290,6 +293,11 @@ document.querySelectorAll(".vinyl").forEach((vinyl) => {
   });
 });
 
-// ====== INITIALIZATION ======
+// INITIALIZATION 
 drawLanes();
 setDifficulty("easy"); // default difficulty on load
+
+window.addEventListener("load", () => {
+  bgVideo.pause();
+  bgVideo.currentTime = 0;
+});
